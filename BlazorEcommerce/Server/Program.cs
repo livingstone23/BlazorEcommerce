@@ -1,14 +1,27 @@
 global using BlazorEcommerce.Shared.Models;
+global using Microsoft.EntityFrameworkCore;
+global using BlazorEcommerce.Server.Data;
 using Microsoft.AspNetCore.ResponseCompression;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContext<DataContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
+//(1.1)Permite configurar Swagger una vez instalado el paquete Swashbuckle.AspNetCore
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 var app = builder.Build();
+
+//(1.2)Permite configurar Swagger una vez instalado el paquete Swashbuckle.AspNetCore
+app.UseSwaggerUI();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -21,6 +34,9 @@ else
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+//(1.3)Permite configurar Swagger una vez instalado el paquete Swashbuckle.AspNetCore
+app.UseSwagger();
 
 app.UseHttpsRedirection();
 
