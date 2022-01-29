@@ -1,6 +1,7 @@
 global using BlazorEcommerce.Shared.Models;
 global using Microsoft.EntityFrameworkCore;
 global using BlazorEcommerce.Server.Data;
+global using BlazorEcommerce.Server.Services.ProductServices;
 using Microsoft.AspNetCore.ResponseCompression;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +18,10 @@ builder.Services.AddRazorPages();
 //(1.1)Permite configurar Swagger una vez instalado el paquete Swashbuckle.AspNetCore
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+//Registro de Servicios
+builder.Services.AddScoped<IProductService, ProductService>();
+
 
 var app = builder.Build();
 
