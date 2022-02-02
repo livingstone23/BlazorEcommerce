@@ -1,4 +1,5 @@
 ﻿@inject IProductService ProductService
+@implements IDisposable
 
 @if (ProductService.Products == null ||  ProductService.Products.Count == 0)
 {
@@ -35,10 +36,21 @@ else
 @code {
 
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
 
-        await ProductService.GetProducts();
+        //await ProductService.GetProducts();
+
+        //Notifica al evento que el producto ha cambiado
+        //permite que se renderize los cambios en la lista 
+        ProductService.ProductsChanged += StateHasChanged;
+
+    }
+
+    public void Dispose()
+    {
+
+        ProductService.ProductsChanged -= StateHasChanged;
 
     }
 
