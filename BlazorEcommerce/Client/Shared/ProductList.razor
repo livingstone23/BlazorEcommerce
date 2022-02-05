@@ -1,13 +1,12 @@
 ﻿@inject IProductService ProductService
 @implements IDisposable
 
-@if (ProductService.Products == null ||  ProductService.Products.Count == 0)
+@if (ProductService.Products == null || ProductService.Products.Count == 0)
 {
-    <span>Loading Products...</span>
+    <span>@ProductService.Message</span>
 }
 else
 {
-
 
     <ul class="list-unstyled">
         @foreach (var product in ProductService.Products)
