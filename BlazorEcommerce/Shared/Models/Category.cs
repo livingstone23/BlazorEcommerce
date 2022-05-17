@@ -11,6 +11,8 @@ namespace BlazorEcommerce.Shared.Models
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string Url { get; set; } = string.Empty;
+
+        //public Guid IdGuid { get; set; }
         //public bool Visible { get; set; } = true;
         //public bool Deleted { get; set; } = false;
         //[NotMapped]
