@@ -1,6 +1,4 @@
-﻿using BlazorEcommerce.Shared;
-
-namespace BlazorEcommerce.Server.Services.ProductServices
+﻿namespace BlazorEcommerce.Server.Services.ProductServices
 {
     public class ProductService: IProductService
     {

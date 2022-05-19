@@ -1,6 +1,4 @@
-﻿using BlazorEcommerce.Shared;
-
-namespace BlazorEcommerce.Server.Services.CategoryService
+﻿namespace BlazorEcommerce.Server.Services.CategoryService
 {
     public interface ICategoryService
     {
