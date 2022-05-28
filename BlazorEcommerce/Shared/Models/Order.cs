@@ -16,5 +16,6 @@ namespace BlazorEcommerce.Shared.Models
         [Column(TypeName = "decimal(18,2)")]
         public decimal TotalPrice { get; set; }
         public List<OrderItem> OrderItems { get; set; }
+
     }
 }

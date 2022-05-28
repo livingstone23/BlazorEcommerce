@@ -10,17 +10,20 @@ namespace BlazorEcommerce.Server.Services.AuthService
 
         private readonly DataContext _context;
         private readonly IConfiguration _configuration;
-        //private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
 
         public AuthService(DataContext context,
-                IConfiguration configuration)
+                IConfiguration configuration,
+                IHttpContextAccessor httpContextAccesor)
         {
             _context = context;
             _configuration = configuration;
+            _httpContextAccessor = httpContextAccesor;
 
         }
 
+        public int GetUserId() => int.Parse(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
 
         //public AuthService(DataContext context,
         //    IConfiguration configuration,
@@ -36,7 +39,7 @@ namespace BlazorEcommerce.Server.Services.AuthService
 
         //public string GetUserEmail() => _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Name);
 
-       
+
 
         public async Task<ServiceResponse<int>> Register(User user, string password)
         {
@@ -193,6 +196,9 @@ namespace BlazorEcommerce.Server.Services.AuthService
 
             return new ServiceResponse<bool> { Data = true, Message = "Password has been changed." };
         }
+
+
+
 
 
         //public async Task<User> GetUserByEmail(string email)

@@ -15,8 +15,12 @@
         Task<ServiceResponse<bool>> AddToCart(CartItem cartItem);
         
         
-        //Task<ServiceResponse<bool>> UpdateQuantity(CartItem cartItem);
-        //Task<ServiceResponse<bool>> RemoveItemFromCart(int productId, int productTypeId);
+        Task<ServiceResponse<bool>> UpdateQuantity(CartItem cartItem);
+        
+        
+        Task<ServiceResponse<bool>> RemoveItemFromCart(int productId, int productTypeId);
+
+
 
 
     }
