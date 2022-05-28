@@ -7,7 +7,8 @@ public interface ICartService
     
     Task AddToCart(CartItem cartItem);
 
-    Task<List<CartItem>> GetCartItems();
+    //Se complementa con metodo GetCartProducts()
+    //Task<List<CartItem>> GetCartItems();
 
     Task<List<CartProductResponse>> GetCartProducts();
     
@@ -15,7 +16,8 @@ public interface ICartService
 
     Task UpdateQuantity(CartProductResponse product);
 
-    //    Task StoreCartItems(bool emptyLocalCart);
-    //    Task GetCartItemsCount();
+    Task StoreCartItems(bool emptyLocalCart);
+    
+    Task GetCartItemsCount();
 
 }
