@@ -5,9 +5,9 @@ public interface IOrderService
 
     Task PlaceOrder();
 
-    //Task<List<OrderOverviewResponse>> GetOrders();
+    Task<List<OrderOverviewResponse>> GetOrders();
     
-    //Task<OrderDetailsResponse> GetOrderDetails(int orderId);
+    Task<OrderDetailsResponse> GetOrderDetails(int orderId);
 
 
 }

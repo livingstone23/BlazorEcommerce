@@ -21,6 +21,7 @@ namespace BlazorEcommerce.Client.Services.OrderService
 
         public async Task PlaceOrder()
         {
+
             if (await IsUserAuthenticated())
             {
                 await _http.PostAsync("api/order", null);
@@ -30,13 +31,26 @@ namespace BlazorEcommerce.Client.Services.OrderService
                 _navigationManager.NavigateTo("login");
             }
 
-            
-
         }
+
 
         private async Task<bool> IsUserAuthenticated()
         {
             return ((await _authStateProvider.GetAuthenticationStateAsync()).User.Identity.IsAuthenticated);
+        }
+
+
+        public async Task<List<OrderOverviewResponse>> GetOrders()
+        {
+            var result = await _http.GetFromJsonAsync<ServiceResponse<List<OrderOverviewResponse>>>("api/order");
+            return result.Data;
+        }
+
+
+        public async Task<OrderDetailsResponse> GetOrderDetails(int orderId)
+        {
+            var result = await _http.GetFromJsonAsync<ServiceResponse<OrderDetailsResponse>>($"api/order/{orderId}");
+            return result.Data;
         }
 
 
