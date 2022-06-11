@@ -1,6 +1,8 @@
 ﻿@page "/cart"
 @inject ICartService CartService
 @inject IOrderService OrderService
+@inject NavigationManager NavigationManager
+@inject IAuthService AuthService
 
 <PageTitle>Shopping Cart</PageTitle>
 
@@ -10,10 +12,10 @@
 {
     <span>@message</span>
 }
-else if (orderPlaced)
+@*else if (orderPlaced)
 {
     <span> Thank you for you order! You can check your orders <a href="orders">here</a> </span>
-}
+}*@
 else
 {
     <div>
@@ -43,13 +45,13 @@ else
             Total (@cartProducts.Count): $@cartProducts.Sum(product => @product.Price * product.Quantity)
         </div>
     </div>
-   @* @if (isAuthenticated)
+    @if (isAuthenticated)
     {
         <div>
             <h5>Delivery Address</h5>
             <AddressForm />
         </div>
-    }*@
+    }
     <button @onclick="PlaceOrder" class="btn alert-success float-end mt-1">Checkout</button>
 }
 
@@ -57,12 +59,12 @@ else
 
     List<CartProductResponse> cartProducts = null;
     string message = "Loading cart...";
-    bool orderPlaced = false;
-    //bool isAuthenticated = false;
+    //bool orderPlaced = false;
+    bool isAuthenticated = false;
 
     protected override async Task OnInitializedAsync()
     {
-        //isAuthenticated = await AuthService.IsUserAuthenticated();
+        isAuthenticated = await AuthService.IsUserAuthenticated();
 
         //if ((await CartService.GetCartItems()).Count == 0)
         //{
@@ -74,7 +76,7 @@ else
         //    cartProducts = await CartService.GetCartProducts();
         //}
 
-        orderPlaced = false;
+        //orderPlaced = false;
         await LoadCart();
 
     }
@@ -132,9 +134,11 @@ else
         //string url = await OrderService.PlaceOrder();
         //NavigationManager.NavigateTo(url);
 
-        await OrderService.PlaceOrder();
-        await CartService.GetCartItemsCount();
-        orderPlaced = true;
+        string url = await OrderService.PlaceOrder();
+        //await CartService.GetCartItemsCount();
+        //orderPlaced = true;
+        NavigationManager.NavigateTo(url);
+
 
     }
 

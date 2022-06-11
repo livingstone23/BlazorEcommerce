@@ -7,10 +7,10 @@ global using BlazorEcommerce.Client.Services.AuthService;
 global using BlazorEcommerce.Client.Services.CartService;
 global using BlazorEcommerce.Client.Services.OrderService;
 global using Microsoft.AspNetCore.Components.Authorization;
+global using BlazorEcommerce.Client.Services.AddressService;
 
 
 using BlazorEcommerce.Client;
-using BlazorEcommerce.Client.Services.OrderService;
 using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -31,6 +31,7 @@ builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICartService, CartService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IAddressService, AddressService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 
 //Vid108.-2 Expose the authentication state

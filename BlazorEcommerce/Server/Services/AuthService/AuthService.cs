@@ -25,6 +25,9 @@ namespace BlazorEcommerce.Server.Services.AuthService
 
         public int GetUserId() => int.Parse(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
 
+        public string GetUserEmail() => _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Name);
+
+
         //public AuthService(DataContext context,
         //    IConfiguration configuration,
         //    IHttpContextAccessor httpContextAccessor)
@@ -33,12 +36,6 @@ namespace BlazorEcommerce.Server.Services.AuthService
         //    _configuration = configuration;
         //    _httpContextAccessor = httpContextAccessor;
         //}
-
-
-        //public int GetUserId() => int.Parse(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
-
-        //public string GetUserEmail() => _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Name);
-
 
 
         public async Task<ServiceResponse<int>> Register(User user, string password)

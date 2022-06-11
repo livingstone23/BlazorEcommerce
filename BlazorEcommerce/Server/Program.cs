@@ -1,11 +1,15 @@
 global using BlazorEcommerce.Shared.Models;
 global using Microsoft.EntityFrameworkCore;
 global using BlazorEcommerce.Server.Data;
+global using BlazorEcommerce.Server.Services.AddressService;
 global using BlazorEcommerce.Server.Services.ProductServices;
 global using BlazorEcommerce.Server.Services.CategoryService;
 global using BlazorEcommerce.Server.Services.CartService;
 global using BlazorEcommerce.Server.Services.AuthService;
 global using BlazorEcommerce.Server.Services.OrderService;
+global using BlazorEcommerce.Server.Services.PaymentService;
+
+using BlazorEcommerce.Server.Services.PaymentService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.IdentityModel.Tokens;
@@ -31,6 +35,8 @@ builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ICartService, CartService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IPaymentService, PaymentService>();
+builder.Services.AddScoped<IAddressService, AddressService>();
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 

@@ -11,7 +11,8 @@ public interface IAuthService
     Task<ServiceResponse<bool>> ChangePassword(int userId, string newPassword);
     
     int GetUserId();
-    //string GetUserEmail();
+    string GetUserEmail();
+    
     //Task<User> GetUserByEmail(string email);
 
 }
